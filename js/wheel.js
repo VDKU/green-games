@@ -38,7 +38,11 @@ let score = 0;
 
 let spins = 0;
 
+let spinning = false;
+
 const maxSpins = 5;
+
+
 
 
 
@@ -65,74 +69,112 @@ document.getElementById("spin");
 
 
 
+
+
 button.onclick=function(){
 
 
-if(spins >= maxSpins){
+    if(spins >= maxSpins || spinning){
 
-return;
+        return;
 
-}
-
-
-
-wheel.classList.add("spin-animation");
+    }
 
 
-
-setTimeout(()=>{
-
-
-let random =
-Math.floor(Math.random()*challenges.length);
+    spinning = true;
 
 
 
-let selected =
-challenges[random];
+    wheel.classList.add("spin-animation");
 
 
 
-score += selected.points;
-
-spins++;
 
 
-
-challenge.textContent =
-selected.text;
+    setTimeout(()=>{
 
 
-
-result.textContent =
-`Great job! +${selected.points} points`;
+        let random =
+        Math.floor(Math.random()*challenges.length);
 
 
 
-scoreText.textContent =
-`Eco Points: ${score}`;
+        let selected =
+        challenges[random];
 
 
 
-wheel.classList.remove("spin-animation");
+
+
+        score += selected.points;
+
+
+        spins++;
 
 
 
-if(spins===maxSpins){
 
 
-result.textContent =
-`Game Complete! Final Score: ${score}`;
-
-
-button.style.display="none";
-
-
-}
+        challenge.textContent =
+        selected.text;
 
 
 
-},1000);
+
+        result.textContent =
+        `Great job! +${selected.points} points 🌱`;
+
+
+
+
+
+        scoreText.textContent =
+        `Eco Points: ${score}`;
+
+
+
+
+
+        wheel.classList.remove("spin-animation");
+
+
+
+        spinning = false;
+
+
+
+
+
+        if(spins === maxSpins){
+
+
+
+            result.textContent =
+            `Game Complete! Final Score: ${score} Eco Points`;
+
+
+
+            button.style.display="none";
+
+
+
+
+            if(typeof completeGame === "function"){
+
+
+                completeGame("Wheel of Sustainability");
+
+
+            }
+
+
+
+        }
+
+
+
+    },1000);
+
 
 
 };

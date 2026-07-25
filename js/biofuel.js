@@ -83,9 +83,15 @@ points:0
 
 
 
-let current=0;
 
-let score=0;
+let current = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+
 
 
 
@@ -111,79 +117,121 @@ document.getElementById("fuel-next");
 
 
 
+
+
+
 function loadChallenge(){
 
 
-let item=challenges[current];
+    answered = false;
 
 
-question.textContent=item.question;
+    let item = challenges[current];
 
 
-options.innerHTML="";
+    question.textContent = item.question;
 
 
-result.textContent="";
+    options.innerHTML = "";
 
 
-
-item.options.forEach(option=>{
-
-
-let button=document.createElement("button");
-
-
-button.textContent=option.text;
+    result.textContent = "";
 
 
 
-button.onclick=function(){
 
 
-score+=option.points;
+    item.options.forEach(option=>{
 
 
-
-scoreText.textContent =
-`Carbon Score: ${score}`;
+        let button = document.createElement("button");
 
 
-
-options.querySelectorAll("button")
-.forEach(btn=>btn.disabled=true);
+        button.textContent = option.text;
 
 
 
-if(option.points>0){
 
-button.style.background="#1b5e20";
 
-result.textContent=
-"Excellent low-carbon choice!";
+        button.onclick=function(){
+
+
+
+            if(answered){
+
+                return;
+
+            }
+
+
+
+            answered = true;
+
+
+
+            score += option.points;
+
+
+
+            scoreText.textContent =
+            `Carbon Score: ${score}`;
+
+
+
+
+
+            options.querySelectorAll("button")
+            .forEach(btn=>{
+
+                btn.disabled = true;
+
+            });
+
+
+
+
+
+            if(option.points > 0){
+
+
+
+                button.style.background="#1b5e20";
+
+
+                result.textContent =
+                "Excellent low-carbon choice! 🌱";
+
+
+            }
+
+            else{
+
+
+                button.style.background="#c62828";
+
+
+                result.textContent =
+                "Try a cleaner option next time.";
+
+            }
+
+
+
+        };
+
+
+
+
+        options.appendChild(button);
+
+
+
+    });
+
 
 }
 
-else{
 
-button.style.background="#c62828";
-
-result.textContent=
-"Try a cleaner option next time.";
-
-}
-
-
-};
-
-
-
-options.appendChild(button);
-
-
-});
-
-
-}
 
 
 
@@ -192,39 +240,64 @@ options.appendChild(button);
 next.onclick=function(){
 
 
-current++;
+    current++;
 
 
 
-if(current < challenges.length){
+
+    if(current < challenges.length){
 
 
-loadChallenge();
+        loadChallenge();
 
 
-}
+    }
 
-else{
-
-
-question.textContent =
-"Challenge Complete!";
+    else{
 
 
-options.innerHTML="";
+
+        question.textContent =
+        "Challenge Complete!";
 
 
-result.textContent =
-`Final Carbon Score: ${score}/${challenges.length*3}`;
+
+        options.innerHTML = "";
 
 
-next.style.display="none";
 
 
-}
+
+        result.textContent =
+        `Final Carbon Score: ${score}/${challenges.length * 3}`;
+
+
+
+
+
+        next.style.display="none";
+
+
+
+
+
+        if(typeof completeGame === "function"){
+
+
+            completeGame("Biofuel Challenge");
+
+
+        }
+
+
+
+    }
 
 
 };
+
+
+
 
 
 

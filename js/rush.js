@@ -4,6 +4,11 @@ let time = 30;
 
 let gameTimer;
 
+let countdown;
+
+let running = false;
+
+
 
 const area =
 document.getElementById("rush-area");
@@ -27,93 +32,128 @@ document.getElementById("rush-start");
 
 
 
+
+
 function createItem(){
 
 
-let item =
-document.createElement("div");
+    let item =
+    document.createElement("div");
 
 
 
-let good =
-Math.random() > 0.25;
+    let good =
+    Math.random() > 0.25;
 
 
 
-if(good){
 
-item.textContent =
-["🌱","♻️","💧","🌳","☀️"]
-[Math.floor(Math.random()*5)];
 
-item.className =
-"rush-good";
+    if(good){
+
+
+        item.textContent =
+        ["🌱","♻️","💧","🌳","☀️"]
+        [Math.floor(Math.random()*5)];
+
+
+        item.className =
+        "rush-good";
+
+
+    }
+
+    else{
+
+
+        item.textContent =
+        "🗑";
+
+
+        item.className =
+        "rush-bad";
+
+
+    }
+
+
+
+
+
+    item.style.left =
+    Math.random()*80+"%";
+
+
+
+    item.style.top =
+    Math.random()*70+"%";
+
+
+
+
+
+
+
+    item.onclick=function(){
+
+
+
+        if(good){
+
+            score++;
+
+        }
+
+        else{
+
+            score--;
+
+        }
+
+
+
+
+
+        scoreText.textContent =
+        `Score: ${score}`;
+
+
+
+        item.remove();
+
+
+
+    };
+
+
+
+
+
+    area.appendChild(item);
+
+
+
+
+
+    setTimeout(()=>{
+
+
+        if(item){
+
+            item.remove();
+
+        }
+
+
+    },1500);
+
+
 
 }
-else{
-
-
-item.textContent =
-"🗑";
-
-
-item.className =
-"rush-bad";
-
-}
 
 
 
 
-item.style.left =
-Math.random()*80+"%";
-
-
-item.style.top =
-Math.random()*70+"%";
-
-
-
-item.onclick=function(){
-
-
-if(good){
-
-score++;
-
-}
-
-else{
-
-score--;
-
-}
-
-
-scoreText.textContent =
-`Score: ${score}`;
-
-
-item.remove();
-
-
-};
-
-
-
-area.appendChild(item);
-
-
-
-setTimeout(()=>{
-
-item.remove();
-
-},1500);
-
-
-
-}
 
 
 
@@ -122,77 +162,141 @@ item.remove();
 function startGame(){
 
 
-score=0;
 
-time=30;
+    if(running){
 
+        return;
 
-scoreText.textContent =
-"Score: 0";
-
-
-timeText.textContent =
-"Time: 30";
-
-
-result.textContent="";
-
-
-area.innerHTML="";
+    }
 
 
 
-gameTimer=setInterval(()=>{
+    running = true;
 
 
-createItem();
+
+    start.disabled = true;
 
 
-},700);
+
+    score = 0;
+
+    time = 30;
 
 
 
 
-let countdown =
-setInterval(()=>{
+    scoreText.textContent =
+    "Score: 0";
 
 
-time--;
+    timeText.textContent =
+    "Time: 30";
 
 
-timeText.textContent =
-`Time: ${time}`;
+    result.textContent = "";
+
+
+    area.innerHTML = "";
 
 
 
-if(time<=0){
 
 
-clearInterval(countdown);
 
-clearInterval(gameTimer);
-
-
-area.innerHTML="";
+    gameTimer = setInterval(()=>{
 
 
-result.textContent =
-`Game Complete! Final Score: ${score}`;
+        createItem();
+
+
+    },700);
+
+
+
+
+
+
+
+
+    countdown = setInterval(()=>{
+
+
+        time--;
+
+
+
+        timeText.textContent =
+        `Time: ${time}`;
+
+
+
+
+
+        if(time <= 0){
+
+
+
+            clearInterval(countdown);
+
+            clearInterval(gameTimer);
+
+
+
+            area.innerHTML = "";
+
+
+
+            result.textContent =
+            `Game Complete! Final Score: ${score}`;
+
+
+
+            running = false;
+
+
+
+            start.disabled = false;
+
+
+
+
+
+            if(typeof completeGame === "function"){
+
+
+
+                completeGame("Sustainable Rush");
+
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+    },1000);
+
 
 
 }
 
 
-},1000);
 
 
 
-}
 
 
 
 start.onclick=function(){
 
-startGame();
+
+    startGame();
+
 
 };

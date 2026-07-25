@@ -95,9 +95,14 @@ points:2
 
 
 
-let current=0;
 
-let score=0;
+let current = 0;
+
+let score = 0;
+
+let answered = false;
+
+
 
 
 
@@ -128,69 +133,123 @@ document.getElementById("day-next");
 
 
 
+
 function loadChoice(){
 
 
-let item=choices[current];
+    answered = false;
 
 
-title.textContent=item.title;
+    let item = choices[current];
 
 
-question.textContent=item.question;
+    title.textContent = item.title;
 
 
-options.innerHTML="";
+    question.textContent = item.question;
 
 
-result.textContent="";
+    options.innerHTML = "";
 
 
-
-item.options.forEach(option=>{
-
-
-let button=document.createElement("button");
-
-
-button.textContent=option.text;
+    result.textContent = "";
 
 
 
-button.onclick=function(){
 
 
-score+=option.points;
+    item.options.forEach(option=>{
 
 
-scoreText.textContent=
-`Sustainability Score: ${score}`;
+        let button = document.createElement("button");
 
 
-result.textContent =
-option.points>=2
-?
-"Great sustainable choice!"
-:
-"Try a greener option next time!";
-
-
-options.querySelectorAll("button")
-.forEach(btn=>btn.disabled=true);
-
-
-};
+        button.textContent = option.text;
 
 
 
-options.appendChild(button);
+
+
+        button.onclick = function(){
 
 
 
-});
+            if(answered){
+
+                return;
+
+            }
+
+
+
+            answered = true;
+
+
+
+
+            score += option.points;
+
+
+
+
+            scoreText.textContent =
+            `Sustainability Score: ${score}`;
+
+
+
+            if(option.points >= 2){
+
+
+                button.style.background = "#1b5e20";
+
+
+                result.textContent =
+                "Great sustainable choice! 🌱";
+
+
+            }
+
+            else{
+
+
+                button.style.background = "#c62828";
+
+
+                result.textContent =
+                "Try a greener option next time! 🌎";
+
+
+            }
+
+
+
+
+
+            options.querySelectorAll("button")
+            .forEach(btn=>{
+
+                btn.disabled = true;
+
+            });
+
+
+
+        };
+
+
+
+
+        options.appendChild(button);
+
+
+
+    });
 
 
 }
+
+
+
 
 
 
@@ -198,41 +257,72 @@ options.appendChild(button);
 next.onclick=function(){
 
 
-current++;
+    current++;
 
 
-if(current<choices.length){
 
 
-loadChoice();
+    if(current < choices.length){
 
 
-}
-
-else{
+        loadChoice();
 
 
-title.textContent="Day Complete!";
+    }
+
+    else{
 
 
-question.textContent=
-"You made choices for a greener planet.";
+
+        title.textContent =
+        "Day Complete!";
 
 
-options.innerHTML="";
+
+        question.textContent =
+        "You made choices for a greener planet.";
 
 
-result.textContent=
-`Final Sustainability Score: ${score}/${choices.length*3}`;
 
 
-next.style.display="none";
+
+        options.innerHTML = "";
 
 
-}
+
+
+
+        result.textContent =
+        `Final Sustainability Score: ${score}/${choices.length * 3}`;
+
+
+
+
+        next.style.display="none";
+
+
+
+
+
+        // SAVE GAME COMPLETION
+
+        if(typeof completeGame === "function"){
+
+
+            completeGame("Day in the Life");
+
+
+        }
+
+
+
+
+    }
 
 
 };
+
+
 
 
 

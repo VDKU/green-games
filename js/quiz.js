@@ -225,6 +225,15 @@ nextButton.onclick = function(){
         restartButton.style.display = "block";
 
 
+        // SAVE GAME COMPLETION
+
+        if(typeof completeGame === "function"){
+
+            completeGame("Sustainability Quiz");
+
+        }
+
+
     }
 
 
