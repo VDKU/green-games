@@ -575,4 +575,57 @@ footer {
 
     color:#1b5e20;
 
+}/* DAY IN THE LIFE GAME */
+
+
+#day-title {
+
+    color:#1b5e20;
+
+    margin-bottom:20px;
+
+}
+
+
+
+#day-question {
+
+    font-size:20px;
+
+    margin-bottom:30px;
+
+}
+
+
+
+#day-options button {
+
+    display:block;
+
+    width:80%;
+
+    margin:15px auto;
+
+}
+
+
+
+#day-score {
+
+    color:#2e7d32;
+
+    margin-bottom:20px;
+
+}
+
+
+
+#day-result {
+
+    margin:25px;
+
+    font-weight:bold;
+
+    font-size:20px;
+
 }
