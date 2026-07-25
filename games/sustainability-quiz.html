@@ -34,14 +34,15 @@
 
 
 
+
 <section class="hero">
 
     <div class="hero-overlay">
 
-        <h2>♻️ Sustainability Quiz</h2>
+        <h2>Sustainability Quiz</h2>
 
         <p>
-            Test your knowledge about protecting our planet.
+            Test your knowledge and learn how small actions help protect our planet.
         </p>
 
     </div>
@@ -50,31 +51,64 @@
 
 
 
+
+
 <section class="quiz">
 
-    <h2>Question 1</h2>
-
-    <p>
-        Which action helps reduce waste?
-    </p>
+    <div class="quiz-box">
 
 
-    <button>
-        Recycling materials
-    </button>
+        <h3 id="progress">
+            Question 1 of 5
+        </h3>
 
 
-    <button>
-        Throwing everything away
-    </button>
+        <h3 id="score">
+            Score: 0
+        </h3>
 
 
-    <button>
-        Using more disposable items
-    </button>
 
+        <h2 id="question">
+            Loading question...
+        </h2>
+
+
+
+        <div id="answers"></div>
+
+
+
+        <p id="result"></p>
+
+
+
+        <button id="next">
+            Next Question
+        </button>
+
+
+
+        <button id="restart" style="display:none;">
+            Play Again
+        </button>
+
+
+
+        <br><br>
+
+
+        <a href="../index.html#games" class="hero-button">
+            Back to Games
+        </a>
+
+
+
+    </div>
 
 </section>
+
+
 
 
 
@@ -83,6 +117,11 @@
     Green Games © 2026
 
 </footer>
+
+
+
+
+<script src="../js/quiz.js"></script>
 
 
 </body>

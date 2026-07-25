@@ -1,3 +1,5 @@
+/* RESET */
+
 * {
 
     margin:0;
@@ -9,9 +11,10 @@
 }
 
 
+
 body {
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
 
     background:#eef4ec;
 
@@ -42,6 +45,7 @@ header {
 }
 
 
+
 .container {
 
     display:flex;
@@ -51,6 +55,15 @@ header {
     align-items:center;
 
 }
+
+
+
+header h1 {
+
+    font-size:28px;
+
+}
+
 
 
 nav a {
@@ -66,12 +79,12 @@ nav a {
 }
 
 
+
 nav a:hover {
 
     color:#c8f7c5;
 
 }
-
 
 
 
@@ -94,6 +107,7 @@ nav a:hover {
 }
 
 
+
 .hero-overlay {
 
     background:rgba(0,0,0,.45);
@@ -107,6 +121,7 @@ nav a:hover {
 }
 
 
+
 .hero h2 {
 
     font-size:42px;
@@ -114,6 +129,7 @@ nav a:hover {
     margin-bottom:20px;
 
 }
+
 
 
 .hero p {
@@ -147,6 +163,7 @@ nav a:hover {
 }
 
 
+
 .hero-button:hover {
 
     background:#1b5e20;
@@ -155,14 +172,14 @@ nav a:hover {
 
 
 
-
-/* GAMES */
+/* GAMES SECTION */
 
 .games {
 
     padding:60px;
 
 }
+
 
 
 .games h2 {
@@ -178,6 +195,7 @@ nav a:hover {
 }
 
 
+
 .game-grid {
 
     display:grid;
@@ -189,6 +207,8 @@ nav a:hover {
 }
 
 
+
+/* GAME CARDS */
 
 .card {
 
@@ -256,6 +276,7 @@ nav a:hover {
 
 
 
+/* BUTTONS */
 
 button {
 
@@ -275,6 +296,8 @@ button {
 
     font-size:16px;
 
+    margin-top:10px;
+
 }
 
 
@@ -287,8 +310,15 @@ button:hover {
 
 
 
+button:disabled {
 
-/* ABOUT */
+    cursor:not-allowed;
+
+}
+
+
+
+/* ABOUT SECTION */
 
 .about {
 
@@ -322,6 +352,83 @@ button:hover {
 
 
 
+/* QUIZ GAME */
+
+.quiz {
+
+    padding:60px 20px;
+
+    text-align:center;
+
+}
+
+
+
+.quiz-box {
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+
+
+#progress {
+
+    color:#2e7d32;
+
+    margin-bottom:20px;
+
+    font-size:18px;
+
+}
+
+
+
+#question {
+
+    color:#1b5e20;
+
+    margin-bottom:30px;
+
+}
+
+
+
+#answers button {
+
+    display:block;
+
+    width:80%;
+
+    margin:15px auto;
+
+}
+
+
+
+#result {
+
+    margin:25px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#1b5e20;
+
+}
+
+
 
 /* FOOTER */
 
@@ -334,5 +441,71 @@ footer {
     text-align:center;
 
     padding:25px;
+
+    margin-top:60px;
+
+}
+
+
+
+/* MOBILE DESIGN */
+
+@media(max-width:700px){
+
+
+    .container {
+
+        flex-direction:column;
+
+        gap:15px;
+
+    }
+
+
+
+    nav a {
+
+        margin:0 10px;
+
+    }
+
+
+
+    .hero {
+
+        padding:100px 20px;
+
+    }
+
+
+
+    .hero h2 {
+
+        font-size:32px;
+
+    }
+
+
+
+    .games {
+
+        padding:30px 20px;
+
+    }
+
+
+
+    .quiz-box {
+
+        padding:25px;
+
+    }
+
+
+}#score {
+
+    color:#555;
+
+    margin-bottom:20px;
 
 }
