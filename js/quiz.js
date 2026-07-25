@@ -1,277 +1,177 @@
 const questions = [
 
-    {
-        question: "Which action helps reduce waste?",
-        answers: [
-            "Recycling materials",
-            "Throwing everything away",
-            "Using more disposable items"
-        ],
-        correct: 0
-    },
+{
+question:"Which action helps reduce waste?",
+answers:["Recycling materials","Throwing everything away","Using more disposable items"],
+correct:0
+},
 
+{
+question:"Which energy source is renewable?",
+answers:["Coal","Solar power","Gasoline"],
+correct:1
+},
 
-    {
-        question: "Which energy source is renewable?",
-        answers: [
-            "Coal",
-            "Solar power",
-            "Gasoline"
-        ],
-        correct: 1
-    },
+{
+question:"Which choice saves water?",
+answers:["Leaving the tap running","Taking longer showers","Fixing leaks"],
+correct:2
+},
 
+{
+question:"Which transportation choice reduces emissions?",
+answers:["Walking or cycling","Driving alone everywhere","Using more fuel"],
+correct:0
+},
 
-    {
-        question: "Which choice saves water?",
-        answers: [
-            "Leaving the tap running",
-            "Taking longer showers",
-            "Fixing leaks"
-        ],
-        correct: 2
-    },
-
-
-    {
-        question: "Which transportation choice reduces emissions?",
-        answers: [
-            "Walking or cycling",
-            "Driving alone everywhere",
-            "Using more fuel"
-        ],
-        correct: 0
-    },
-
-
-    {
-        question: "What helps protect forests?",
-        answers: [
-            "Planting trees",
-            "Wasting paper",
-            "Cutting down more forests"
-        ],
-        correct: 0
-    }
+{
+question:"What helps protect forests?",
+answers:["Planting trees","Wasting paper","Cutting down more forests"],
+correct:0
+}
 
 ];
 
 
-
 let currentQuestion = 0;
-
 let score = 0;
 
 
+const questionText=document.getElementById("question");
+const answersBox=document.getElementById("answers");
+const result=document.getElementById("result");
+const nextButton=document.getElementById("next");
+const restartButton=document.getElementById("restart");
+const progress=document.getElementById("progress");
+const scoreDisplay=document.getElementById("score");
 
-const questionText = document.getElementById("question");
 
-const answersBox = document.getElementById("answers");
+function loadQuestion(){
 
-const result = document.getElementById("result");
+result.textContent="";
+answersBox.innerHTML="";
 
-const nextButton = document.getElementById("next");
+let q=questions[currentQuestion];
 
-const restartButton = document.getElementById("restart");
 
-const progress = document.getElementById("progress");
+progress.textContent=
+`Question ${currentQuestion+1} of ${questions.length}`;
 
-const scoreDisplay = document.getElementById("score");
+scoreDisplay.textContent=
+`Score: ${score}`;
 
 
+questionText.textContent=q.question;
 
 
-function loadQuestion() {
 
+q.answers.forEach((answer,index)=>{
 
-    result.textContent = "";
 
-    answersBox.innerHTML = "";
+let button=document.createElement("button");
 
+button.textContent=answer;
 
-    const q = questions[currentQuestion];
 
+button.onclick=function(){
 
-    progress.textContent =
-    `Question ${currentQuestion + 1} of ${questions.length}`;
 
+let buttons=answersBox.querySelectorAll("button");
 
-    scoreDisplay.textContent =
-    `Score: ${score}`;
+buttons.forEach(btn=>btn.disabled=true);
 
 
-    questionText.textContent = q.question;
+if(index===q.correct){
 
+score++;
 
+button.style.background="#1b5e20";
 
-    q.answers.forEach((answer,index)=>{
+result.textContent="Correct! 🌱";
 
+}
+else{
 
-        const button = document.createElement("button");
+button.style.background="#c62828";
 
+buttons[q.correct].style.background="#1b5e20";
 
-        button.textContent = answer;
+result.textContent="Incorrect. Correct answer highlighted.";
 
+}
 
 
-        button.onclick = function(){
+scoreDisplay.textContent=
+`Score: ${score}`;
 
+};
 
-            const buttons =
-            answersBox.querySelectorAll("button");
 
+answersBox.appendChild(button);
 
 
-            buttons.forEach(btn => {
-
-                btn.disabled = true;
-
-            });
-
-
-
-            if(index === q.correct){
-
-
-                score++;
-
-
-                scoreDisplay.textContent =
-                `Score: ${score}`;
-
-
-                button.style.background = "#2e7d32";
-
-
-                result.textContent =
-                "Correct!";
-
-
-            }
-
-            else{
-
-
-                button.style.background = "#c62828";
-
-
-                buttons[q.correct].style.background = "#2e7d32";
-
-
-                result.textContent =
-                "Incorrect. The correct answer is highlighted.";
-
-            }
-
-
-        };
-
-
-        answersBox.appendChild(button);
-
-
-    });
+});
 
 
 }
 
 
 
+nextButton.onclick=function(){
+
+currentQuestion++;
 
 
-nextButton.onclick = function(){
+if(currentQuestion<questions.length){
+
+loadQuestion();
+
+}
+
+else{
 
 
-    currentQuestion++;
+progress.textContent="Quiz Complete";
+
+questionText.textContent="Great Job!";
+
+answersBox.innerHTML="";
 
 
-
-    if(currentQuestion < questions.length){
-
-
-        loadQuestion();
+result.textContent=
+`Final Score: ${score}/${questions.length}`;
 
 
-    }
+nextButton.style.display="none";
 
-    else{
-
-
-        progress.textContent =
-        "Quiz Complete";
+restartButton.style.display="block";
 
 
-        questionText.textContent =
-        "Great Job!";
+if(typeof completeGame==="function"){
+
+completeGame("Sustainability Quiz");
+
+}
 
 
-        answersBox.innerHTML = "";
-
-
-
-        let percentage =
-        Math.round((score / questions.length) * 100);
-
-
-
-        result.textContent =
-        `Final Score: ${score}/${questions.length} (${percentage}%)`;
-
-
-
-        nextButton.style.display = "none";
-
-
-        restartButton.style.display = "block";
-
-
-        // SAVE GAME COMPLETION
-
-        if(typeof completeGame === "function"){
-
-            completeGame("Sustainability Quiz");
-
-        }
-
-
-    }
-
+}
 
 };
 
 
 
+restartButton.onclick=function(){
 
+currentQuestion=0;
+score=0;
 
+nextButton.style.display="block";
+restartButton.style.display="none";
 
-restartButton.onclick = function(){
-
-
-    currentQuestion = 0;
-
-    score = 0;
-
-
-    nextButton.style.display = "block";
-
-    restartButton.style.display = "none";
-
-
-    scoreDisplay.textContent =
-    "Score: 0";
-
-
-    loadQuestion();
-
+loadQuestion();
 
 };
 
 
 
-
-
-window.onload = function(){
-
-    loadQuestion();
-
-};
+loadQuestion();

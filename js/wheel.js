@@ -1,4 +1,4 @@
-const challenges = [
+const challenges=[
 
 {
 text:"Plant a tree or care for a plant 🌱",
@@ -33,147 +33,95 @@ points:3
 ];
 
 
+let score=0;
+let spins=0;
+let spinning=false;
 
-let score = 0;
-
-let spins = 0;
-
-let spinning = false;
-
-const maxSpins = 5;
+const maxSpins=5;
 
 
 
-
-
-const wheel =
-document.getElementById("wheel");
-
-
-const challenge =
-document.getElementById("challenge");
-
-
-const result =
-document.getElementById("wheel-result");
-
-
-const scoreText =
-document.getElementById("wheel-score");
-
-
-const button =
-document.getElementById("spin");
-
-
-
-
+const wheel=document.getElementById("wheel");
+const challenge=document.getElementById("challenge");
+const result=document.getElementById("wheel-result");
+const scoreText=document.getElementById("wheel-score");
+const button=document.getElementById("spin");
 
 
 
 button.onclick=function(){
 
 
-    if(spins >= maxSpins || spinning){
+if(spins>=maxSpins || spinning){
 
-        return;
+return;
 
-    }
+}
 
 
-    spinning = true;
+spinning=true;
 
 
+wheel.classList.add("spin-animation");
 
-    wheel.classList.add("spin-animation");
 
 
+setTimeout(function(){
 
 
+let random=Math.floor(Math.random()*challenges.length);
 
-    setTimeout(()=>{
 
+let selected=challenges[random];
 
-        let random =
-        Math.floor(Math.random()*challenges.length);
 
+score+=selected.points;
 
+spins++;
 
-        let selected =
-        challenges[random];
 
+challenge.textContent=
+selected.text;
 
 
+result.textContent=
+`Great job! +${selected.points} points 🌱`;
 
 
-        score += selected.points;
+scoreText.textContent=
+`Eco Points: ${score}`;
 
 
-        spins++;
+wheel.classList.remove("spin-animation");
 
 
+spinning=false;
 
 
 
-        challenge.textContent =
-        selected.text;
+if(spins===maxSpins){
 
 
+result.textContent=
+`Game Complete! Final Score: ${score} Eco Points`;
 
 
-        result.textContent =
-        `Great job! +${selected.points} points 🌱`;
+button.style.display="none";
 
 
 
+if(typeof completeGame==="function"){
 
+completeGame("Wheel of Sustainability");
 
-        scoreText.textContent =
-        `Eco Points: ${score}`;
+}
 
 
+}
 
 
 
-        wheel.classList.remove("spin-animation");
-
-
-
-        spinning = false;
-
-
-
-
-
-        if(spins === maxSpins){
-
-
-
-            result.textContent =
-            `Game Complete! Final Score: ${score} Eco Points`;
-
-
-
-            button.style.display="none";
-
-
-
-
-            if(typeof completeGame === "function"){
-
-
-                completeGame("Wheel of Sustainability");
-
-
-            }
-
-
-
-        }
-
-
-
-    },1000);
+},1000);
 
 
 

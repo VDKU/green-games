@@ -20,6 +20,7 @@ body {
 }
 
 
+
 /* HEADER */
 
 header {
@@ -55,6 +56,7 @@ header h1 {
     font-size:28px;
 
 }
+
 
 
 nav a {
@@ -158,7 +160,7 @@ nav a:hover {
 
 
 
-/* GAMES SECTION */
+/* GAMES */
 
 .games {
 
@@ -193,7 +195,7 @@ nav a:hover {
 
 
 
-/* GAME CARDS */
+/* CARDS */
 
 .card {
 
@@ -219,6 +221,7 @@ nav a:hover {
 }
 
 
+
 .card img {
 
     width:100%;
@@ -240,7 +243,6 @@ nav a:hover {
 }
 
 
-
 .card h3 {
 
     color:#1b5e20;
@@ -259,7 +261,15 @@ nav a:hover {
 
 
 
-/* GAME BADGES */
+.card a {
+
+    text-decoration:none;
+
+}
+
+
+
+/* BADGES */
 
 .badge {
 
@@ -306,6 +316,7 @@ button {
 }
 
 
+
 button:hover {
 
     background:#1b5e20;
@@ -317,102 +328,13 @@ button:disabled {
 
     cursor:not-allowed;
 
-}
-
-
-
-.card a {
-
-    text-decoration:none;
+    opacity:.8;
 
 }
 
 
 
-
-/* PROGRESS SECTION */
-
-.progress-box {
-
-    padding:60px 20px;
-
-    text-align:center;
-
-}
-
-
-
-.progress-box h2 {
-
-    color:#1b5e20;
-
-    margin-bottom:30px;
-
-}
-
-
-
-.progress-card {
-
-    background:white;
-
-    max-width:500px;
-
-    margin:auto;
-
-    padding:30px;
-
-    border-radius:12px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-
-}
-
-
-
-.progress-card h3 {
-
-    color:#1b5e20;
-
-    margin-bottom:15px;
-
-}
-
-
-
-/* ABOUT SECTION */
-
-.about {
-
-    background:white;
-
-    text-align:center;
-
-    padding:60px 20px;
-
-}
-
-
-.about h2 {
-
-    color:#1b5e20;
-
-    margin-bottom:20px;
-
-}
-
-
-.about p {
-
-    max-width:800px;
-
-    margin:auto;
-
-}
-
-
-
-/* QUIZ GAME */
+/* QUIZ BASE */
 
 .quiz {
 
@@ -448,9 +370,8 @@ button:disabled {
 
     margin-bottom:20px;
 
-    font-size:18px;
-
 }
+
 
 
 #score {
@@ -472,7 +393,10 @@ button:disabled {
 }
 
 
-#answers button {
+#answers button,
+#trash-options button,
+#day-options button,
+#fuel-options button {
 
     display:block;
 
@@ -483,7 +407,11 @@ button:disabled {
 }
 
 
-#result {
+
+#result,
+#trash-result,
+#day-result,
+#fuel-result {
 
     margin:25px;
 
@@ -497,13 +425,11 @@ button:disabled {
 
 
 
-/* SORT THE TRASH GAME */
+/* SORT TRASH */
 
 #trash-score {
 
     color:#2e7d32;
-
-    margin-bottom:20px;
 
 }
 
@@ -514,18 +440,8 @@ button:disabled {
 
     font-size:32px;
 
-    margin-bottom:20px;
-
 }
 
-
-.trash-question {
-
-    font-size:20px;
-
-    margin-bottom:25px;
-
-}
 
 
 #trash-image {
@@ -537,38 +453,12 @@ button:disabled {
 }
 
 
-#trash-options button {
 
-    display:block;
-
-    width:80%;
-
-    margin:15px auto;
-
-}
-
-
-#trash-result {
-
-    margin:25px;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    color:#1b5e20;
-
-}
-
-
-
-/* DAY IN THE LIFE */
+/* DAY LIFE */
 
 #day-title {
 
     color:#1b5e20;
-
-    margin-bottom:20px;
 
 }
 
@@ -582,39 +472,15 @@ button:disabled {
 }
 
 
-#day-options button {
-
-    display:block;
-
-    width:80%;
-
-    margin:15px auto;
-
-}
-
-
 #day-score {
 
     color:#2e7d32;
 
-    margin-bottom:20px;
-
-}
-
-
-#day-result {
-
-    margin:25px;
-
-    font-weight:bold;
-
-    font-size:20px;
-
 }
 
 
 
-/* WHEEL GAME */
+/* WHEEL */
 
 #wheel {
 
@@ -627,19 +493,12 @@ button:disabled {
     border-radius:50%;
 
     background:
-
     conic-gradient(
-
     #66bb6a,
-
     #ffee58,
-
     #42a5f5,
-
     #ef5350,
-
     #66bb6a
-
     );
 
     display:flex;
@@ -663,6 +522,7 @@ button:disabled {
 }
 
 
+
 @keyframes spin {
 
 from {
@@ -684,8 +544,6 @@ transform:rotate(720deg);
 
 color:#2e7d32;
 
-margin-bottom:20px;
-
 }
 
 
@@ -693,19 +551,15 @@ margin-bottom:20px;
 
 color:#1b5e20;
 
-margin:25px;
-
 }
 
 
 
-/* BIOFUEL GAME */
+/* BIOFUEL */
 
 #fuel-score {
 
 color:#2e7d32;
-
-margin-bottom:20px;
 
 }
 
@@ -714,42 +568,16 @@ margin-bottom:20px;
 
 color:#1b5e20;
 
-margin-bottom:25px;
-
-}
-
-
-#fuel-options button {
-
-display:block;
-
-width:80%;
-
-margin:15px auto;
-
-}
-
-
-#fuel-result {
-
-font-size:20px;
-
-font-weight:bold;
-
-margin:25px;
-
 }
 
 
 
-/* SUSTAINABLE RUSH */
+/* RUSH GAME */
 
 #rush-score,
 #rush-time {
 
 color:#2e7d32;
-
-margin-bottom:15px;
 
 }
 
@@ -782,26 +610,6 @@ font-size:45px;
 
 cursor:pointer;
 
-animation:float 1.5s linear;
-
-}
-
-
-
-@keyframes float {
-
-from {
-
-transform:translateY(0);
-
-}
-
-to {
-
-transform:translateY(-20px);
-
-}
-
 }
 
 
@@ -812,7 +620,122 @@ font-size:22px;
 
 font-weight:bold;
 
-margin:20px;
+}
+
+
+
+/* PROGRESS PAGE */
+
+.progress-box {
+
+padding:60px 20px;
+
+text-align:center;
+
+}
+
+
+.progress-box h2 {
+
+color:#1b5e20;
+
+margin-bottom:30px;
+
+}
+
+
+
+.progress-card {
+
+background:white;
+
+max-width:600px;
+
+margin:auto;
+
+padding:30px;
+
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+
+
+.progress-card h3 {
+
+color:#1b5e20;
+
+margin-bottom:20px;
+
+}
+
+
+
+#badge {
+
+font-size:24px;
+
+color:#2e7d32;
+
+margin:25px;
+
+}
+
+
+
+#completed-games {
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+margin-top:30px;
+
+}
+
+
+
+#completed-games .card {
+
+background:#eef4ec;
+
+}
+
+
+
+/* ABOUT */
+
+.about {
+
+background:white;
+
+text-align:center;
+
+padding:60px 20px;
+
+}
+
+
+
+.about h2 {
+
+color:#1b5e20;
+
+margin-bottom:20px;
+
+}
+
+
+
+.about p {
+
+max-width:800px;
+
+margin:auto;
 
 }
 
@@ -822,72 +745,66 @@ margin:20px;
 
 footer {
 
-    background:#1b5e20;
+background:#1b5e20;
 
-    color:white;
+color:white;
 
-    text-align:center;
+text-align:center;
 
-    padding:25px;
+padding:25px;
 
-    margin-top:60px;
+margin-top:60px;
 
 }
 
 
 
-/* MOBILE DESIGN */
+/* MOBILE */
 
 @media(max-width:700px){
 
 
-    .container {
+.container {
 
-        flex-direction:column;
+flex-direction:column;
 
-        gap:15px;
+gap:15px;
 
-    }
-
-
-
-    nav a {
-
-        margin:0 10px;
-
-    }
+}
 
 
+nav a {
 
-    .hero {
+margin:0 10px;
 
-        padding:100px 20px;
-
-    }
-
+}
 
 
-    .hero h2 {
+.hero {
 
-        font-size:32px;
+padding:100px 20px;
 
-    }
-
-
-
-    .games {
-
-        padding:30px 20px;
-
-    }
+}
 
 
+.hero h2 {
 
-    .quiz-box {
+font-size:32px;
 
-        padding:25px;
+}
 
-    }
 
+.games {
+
+padding:30px 20px;
+
+}
+
+
+.quiz-box {
+
+padding:25px;
+
+}
 
 }

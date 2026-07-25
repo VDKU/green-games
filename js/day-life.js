@@ -1,255 +1,138 @@
-const choices = [
+const choices=[
 
 {
 title:"Morning Travel",
-
 question:"How do you travel to school or work?",
-
 options:[
-{
-text:"Drive alone",
-points:0
-},
-{
-text:"Ride a bike",
-points:3
-},
-{
-text:"Take public transport",
-points:2
-}
+{text:"Drive alone",points:0},
+{text:"Ride a bike",points:3},
+{text:"Take public transport",points:2}
 ]
-
 },
-
 
 {
 title:"Lunch Choice",
-
 question:"What lunch choice is more sustainable?",
-
 options:[
-{
-text:"Bring a reusable container",
-points:3
-},
-{
-text:"Buy a disposable meal",
-points:0
-},
-{
-text:"Choose local food",
-points:2
-}
+{text:"Bring a reusable container",points:3},
+{text:"Buy a disposable meal",points:0},
+{text:"Choose local food",points:2}
 ]
-
 },
-
 
 {
 title:"Energy Use",
-
 question:"You leave a room. What do you do?",
-
 options:[
-{
-text:"Turn off the lights",
-points:3
-},
-{
-text:"Leave everything running",
-points:0
-},
-{
-text:"Reduce energy use when possible",
-points:2
-}
+{text:"Turn off the lights",points:3},
+{text:"Leave everything running",points:0},
+{text:"Reduce energy use when possible",points:2}
 ]
-
 },
-
 
 {
 title:"Shopping",
-
 question:"You need a new bag. What do you choose?",
-
 options:[
-{
-text:"Reusable bag",
-points:3
-},
-{
-text:"Single-use plastic bag",
-points:0
-},
-{
-text:"Paper bag",
-points:2
-}
+{text:"Reusable bag",points:3},
+{text:"Single-use plastic bag",points:0},
+{text:"Paper bag",points:2}
 ]
-
 }
 
 ];
 
 
-
-
-let current = 0;
-
-let score = 0;
-
-let answered = false;
+let current=0;
+let score=0;
+let answered=false;
 
 
 
-
-
-const title =
-document.getElementById("day-title");
-
-
-const question =
-document.getElementById("day-question");
-
-
-const options =
-document.getElementById("day-options");
-
-
-const result =
-document.getElementById("day-result");
-
-
-const scoreText =
-document.getElementById("day-score");
-
-
-const next =
-document.getElementById("day-next");
-
-
-
+const title=document.getElementById("day-title");
+const question=document.getElementById("day-question");
+const options=document.getElementById("day-options");
+const result=document.getElementById("day-result");
+const scoreText=document.getElementById("day-score");
+const next=document.getElementById("day-next");
 
 
 
 function loadChoice(){
 
+answered=false;
 
-    answered = false;
+let item=choices[current];
 
 
-    let item = choices[current];
+title.textContent=item.title;
 
+question.textContent=item.question;
 
-    title.textContent = item.title;
+options.innerHTML="";
 
+result.textContent="";
 
-    question.textContent = item.question;
 
 
-    options.innerHTML = "";
+item.options.forEach(option=>{
 
 
-    result.textContent = "";
+let button=document.createElement("button");
 
+button.textContent=option.text;
 
 
 
+button.onclick=function(){
 
-    item.options.forEach(option=>{
 
+if(answered)return;
 
-        let button = document.createElement("button");
 
+answered=true;
 
-        button.textContent = option.text;
 
+score+=option.points;
 
 
+scoreText.textContent=
+`Sustainability Score: ${score}`;
 
 
-        button.onclick = function(){
+if(option.points>=2){
 
+button.style.background="#1b5e20";
 
+result.textContent=
+"Great sustainable choice! 🌱";
 
-            if(answered){
+}
+else{
 
-                return;
+button.style.background="#c62828";
 
-            }
-
-
-
-            answered = true;
-
-
-
-
-            score += option.points;
-
-
-
-
-            scoreText.textContent =
-            `Sustainability Score: ${score}`;
-
-
-
-            if(option.points >= 2){
-
-
-                button.style.background = "#1b5e20";
-
-
-                result.textContent =
-                "Great sustainable choice! 🌱";
-
-
-            }
-
-            else{
-
-
-                button.style.background = "#c62828";
-
-
-                result.textContent =
-                "Try a greener option next time! 🌎";
-
-
-            }
-
-
-
-
-
-            options.querySelectorAll("button")
-            .forEach(btn=>{
-
-                btn.disabled = true;
-
-            });
-
-
-
-        };
-
-
-
-
-        options.appendChild(button);
-
-
-
-    });
-
+result.textContent=
+"Try a greener option next time!";
 
 }
 
 
+options.querySelectorAll("button")
+.forEach(btn=>btn.disabled=true);
 
+
+};
+
+
+
+options.appendChild(button);
+
+
+});
+
+
+}
 
 
 
@@ -257,74 +140,44 @@ function loadChoice(){
 next.onclick=function(){
 
 
-    current++;
+current++;
 
 
+if(current<choices.length){
+
+loadChoice();
+
+}
+
+else{
 
 
-    if(current < choices.length){
+title.textContent="Day Complete!";
+
+question.textContent=
+"You made choices for a greener planet.";
 
 
-        loadChoice();
+options.innerHTML="";
 
 
-    }
-
-    else{
-
+result.textContent=
+`Final Sustainability Score: ${score}/${choices.length*3}`;
 
 
-        title.textContent =
-        "Day Complete!";
+next.style.display="none";
 
 
+if(typeof completeGame==="function"){
 
-        question.textContent =
-        "You made choices for a greener planet.";
+completeGame("Day in the Life");
 
-
-
-
-
-        options.innerHTML = "";
+}
 
 
-
-
-
-        result.textContent =
-        `Final Sustainability Score: ${score}/${choices.length * 3}`;
-
-
-
-
-        next.style.display="none";
-
-
-
-
-
-        // SAVE GAME COMPLETION
-
-        if(typeof completeGame === "function"){
-
-
-            completeGame("Day in the Life");
-
-
-        }
-
-
-
-
-    }
-
+}
 
 };
-
-
-
-
 
 
 

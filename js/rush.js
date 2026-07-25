@@ -1,160 +1,102 @@
-let score = 0;
+let score=0;
 
-let time = 30;
+let time=30;
 
 let gameTimer;
 
 let countdown;
 
-let running = false;
 
 
+const area=document.getElementById("rush-area");
 
-const area =
-document.getElementById("rush-area");
+const scoreText=document.getElementById("rush-score");
 
+const timeText=document.getElementById("rush-time");
 
-const scoreText =
-document.getElementById("rush-score");
+const result=document.getElementById("rush-result");
 
-
-const timeText =
-document.getElementById("rush-time");
-
-
-const result =
-document.getElementById("rush-result");
-
-
-const start =
-document.getElementById("rush-start");
-
-
-
+const start=document.getElementById("rush-start");
 
 
 
 function createItem(){
 
 
-    let item =
-    document.createElement("div");
+let item=document.createElement("div");
 
 
+let good=Math.random()>0.25;
 
-    let good =
-    Math.random() > 0.25;
 
 
+if(good){
 
+item.textContent=
+["🌱","♻️","💧","🌳","☀️"]
+[Math.floor(Math.random()*5)];
 
 
-    if(good){
+item.className="rush-good";
 
 
-        item.textContent =
-        ["🌱","♻️","💧","🌳","☀️"]
-        [Math.floor(Math.random()*5)];
+}
 
+else{
 
-        item.className =
-        "rush-good";
 
+item.textContent="🗑";
 
-    }
-
-    else{
-
-
-        item.textContent =
-        "🗑";
-
-
-        item.className =
-        "rush-bad";
-
-
-    }
-
-
-
-
-
-    item.style.left =
-    Math.random()*80+"%";
-
-
-
-    item.style.top =
-    Math.random()*70+"%";
-
-
-
-
-
-
-
-    item.onclick=function(){
-
-
-
-        if(good){
-
-            score++;
-
-        }
-
-        else{
-
-            score--;
-
-        }
-
-
-
-
-
-        scoreText.textContent =
-        `Score: ${score}`;
-
-
-
-        item.remove();
-
-
-
-    };
-
-
-
-
-
-    area.appendChild(item);
-
-
-
-
-
-    setTimeout(()=>{
-
-
-        if(item){
-
-            item.remove();
-
-        }
-
-
-    },1500);
-
-
+item.className="rush-bad";
 
 }
 
 
 
+item.style.left=Math.random()*80+"%";
+
+item.style.top=Math.random()*70+"%";
 
 
+
+item.onclick=function(){
+
+
+if(good){
+
+score++;
+
+}
+else{
+
+score--;
+
+}
+
+
+scoreText.textContent=
+`Score: ${score}`;
+
+
+item.remove();
+
+
+};
+
+
+
+area.appendChild(item);
+
+
+
+setTimeout(()=>{
+
+item.remove();
+
+},1500);
+
+
+}
 
 
 
@@ -162,125 +104,68 @@ function createItem(){
 function startGame(){
 
 
+score=0;
 
-    if(running){
+time=30;
 
-        return;
 
-    }
+scoreText.textContent="Score: 0";
 
+timeText.textContent="Time: 30";
 
+result.textContent="";
 
-    running = true;
+area.innerHTML="";
 
 
 
-    start.disabled = true;
+clearInterval(gameTimer);
 
+clearInterval(countdown);
 
 
-    score = 0;
 
-    time = 30;
+gameTimer=setInterval(()=>{
 
+createItem();
 
+},700);
 
 
-    scoreText.textContent =
-    "Score: 0";
 
 
-    timeText.textContent =
-    "Time: 30";
+countdown=setInterval(()=>{
 
 
-    result.textContent = "";
+time--;
 
 
-    area.innerHTML = "";
+timeText.textContent=
+`Time: ${time}`;
 
 
 
+if(time<=0){
 
 
+clearInterval(countdown);
 
-    gameTimer = setInterval(()=>{
+clearInterval(gameTimer);
 
 
-        createItem();
+area.innerHTML="";
 
 
-    },700);
+result.textContent=
+`Game Complete! Final Score: ${score}`;
 
 
 
+if(typeof completeGame==="function"){
 
+completeGame("Sustainable Rush");
 
-
-
-
-    countdown = setInterval(()=>{
-
-
-        time--;
-
-
-
-        timeText.textContent =
-        `Time: ${time}`;
-
-
-
-
-
-        if(time <= 0){
-
-
-
-            clearInterval(countdown);
-
-            clearInterval(gameTimer);
-
-
-
-            area.innerHTML = "";
-
-
-
-            result.textContent =
-            `Game Complete! Final Score: ${score}`;
-
-
-
-            running = false;
-
-
-
-            start.disabled = false;
-
-
-
-
-
-            if(typeof completeGame === "function"){
-
-
-
-                completeGame("Sustainable Rush");
-
-
-
-            }
-
-
-
-
-
-        }
-
-
-
-    },1000);
+}
 
 
 
@@ -288,15 +173,16 @@ function startGame(){
 
 
 
+},1000);
 
 
+
+}
 
 
 
 start.onclick=function(){
 
-
-    startGame();
-
+startGame();
 
 };
