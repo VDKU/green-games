@@ -717,4 +717,47 @@ color:#1b5e20;
 
 margin:25px;
 
+}/* BIOFUEL GAME */
+
+
+#fuel-score {
+
+color:#2e7d32;
+
+margin-bottom:20px;
+
+}
+
+
+
+#fuel-question {
+
+color:#1b5e20;
+
+margin-bottom:25px;
+
+}
+
+
+
+#fuel-options button {
+
+display:block;
+
+width:80%;
+
+margin:15px auto;
+
+}
+
+
+
+#fuel-result {
+
+font-size:20px;
+
+font-weight:bold;
+
+margin:25px;
+
 }
