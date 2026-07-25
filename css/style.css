@@ -836,4 +836,16 @@ font-weight:bold;
 
 margin:20px;
 
+}.card a {
+
+    text-decoration:none;
+
+}
+
+
+
+.card button {
+
+    margin-top:10px;
+
 }
