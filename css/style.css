@@ -760,4 +760,80 @@ font-weight:bold;
 
 margin:25px;
 
+}/* SUSTAINABLE RUSH */
+
+
+#rush-score,
+#rush-time {
+
+color:#2e7d32;
+
+margin-bottom:15px;
+
+}
+
+
+
+#rush-area {
+
+position:relative;
+
+height:350px;
+
+background:#eef4ec;
+
+border-radius:12px;
+
+overflow:hidden;
+
+margin:25px 0;
+
+}
+
+
+
+.rush-good,
+.rush-bad {
+
+position:absolute;
+
+font-size:45px;
+
+cursor:pointer;
+
+animation:float 1.5s linear;
+
+}
+
+
+
+@keyframes float {
+
+
+from {
+
+transform:translateY(0);
+
+}
+
+
+to {
+
+transform:translateY(-20px);
+
+}
+
+
+}
+
+
+
+#rush-result {
+
+font-size:22px;
+
+font-weight:bold;
+
+margin:20px;
+
 }
