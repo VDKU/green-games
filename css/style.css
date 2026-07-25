@@ -628,4 +628,93 @@ footer {
 
     font-size:20px;
 
+}/* WHEEL GAME */
+
+
+#wheel {
+
+width:200px;
+
+height:200px;
+
+margin:30px auto;
+
+border-radius:50%;
+
+background:
+
+conic-gradient(
+
+#66bb6a,
+
+#ffee58,
+
+#42a5f5,
+
+#ef5350,
+
+#66bb6a
+
+);
+
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:70px;
+
+border:8px solid #1b5e20;
+
+}
+
+
+
+.spin-animation {
+
+animation:spin 1s ease;
+
+}
+
+
+
+@keyframes spin {
+
+
+from {
+
+transform:rotate(0deg);
+
+}
+
+
+to {
+
+transform:rotate(720deg);
+
+}
+
+
+}
+
+
+
+#wheel-score {
+
+color:#2e7d32;
+
+margin-bottom:20px;
+
+}
+
+
+
+#challenge {
+
+color:#1b5e20;
+
+margin:25px;
+
 }
