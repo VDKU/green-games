@@ -508,4 +508,71 @@ footer {
 
     margin-bottom:20px;
 
+}/* SORT THE TRASH GAME */
+
+
+#trash-score {
+
+    color:#2e7d32;
+
+    margin-bottom:20px;
+
+}
+
+
+
+#trash-item {
+
+    color:#1b5e20;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.trash-question {
+
+    font-size:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+#trash-image {
+
+    font-size:90px;
+
+    margin:30px;
+
+}
+
+
+
+#trash-options button {
+
+    display:block;
+
+    width:80%;
+
+    margin:15px auto;
+
+}
+
+
+
+#trash-result {
+
+    margin:25px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#1b5e20;
+
 }
